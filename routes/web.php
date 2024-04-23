@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\CompanyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-
 Route::get('/', function () {
     return view('pages.auth.auth-login');
 });
@@ -15,6 +15,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('users', UserController::class);
     Route::resource('companies', CompanyController::class);
+    Route::resource('attendances', AttendanceController::class);
     //Route::get('companies/{company}', [CompanyController::class, 'show'])->name('companies.show');
 
 });
