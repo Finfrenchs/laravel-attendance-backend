@@ -1,4 +1,5 @@
-<div class="main-sidebar sidebar-style-2">
+<div class="main-sidebar side
+bar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
             <a href="index.html">Stisla</a>
@@ -18,5 +19,11 @@
                     <span>Users</span></a>
             </li>
 
+            <li class="nav-item">
+                <a href="{{ route('companies.index')}}" class="nav-link">
+                    <i class="fas fa-columns"></i>
+                    <span>Company</span>
+                </a>
+            </li>
     </aside>
 </div>

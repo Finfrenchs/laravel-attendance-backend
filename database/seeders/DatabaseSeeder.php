@@ -23,5 +23,9 @@ class DatabaseSeeder extends Seeder
             'position' => 'Admin',
             'department'=> 'Administration',
         ]);
+
+        $this->call([
+            CompanySeeder::class,
+        ]);
     }
 }
