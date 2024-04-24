@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\PermissionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 Route::get('/', function () {
@@ -17,5 +18,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('companies', CompanyController::class);
     Route::resource('attendances', AttendanceController::class);
     //Route::get('companies/{company}', [CompanyController::class, 'show'])->name('companies.show');
+
+    Route::resource('permissions', PermissionController::class);
+
 
 });
