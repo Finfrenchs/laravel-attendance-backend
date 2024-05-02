@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notification;
 use App\Models\Permission;
 use Illuminate\Http\Request;
 
@@ -48,12 +49,20 @@ class PermissionController extends Controller
 
 
         $permission = Permission::findOrFail($id);
-
+        $oldIsApproval = $permission->is_approval;
 
         $permission->is_approval = $request->input('is_approval');
-
-
         $permission->save();
+
+
+        if ($permission->is_approval !== $oldIsApproval) {
+            $message = $permission->is_approval ? 'Permission has been approved.' : 'Permission has been denied.';
+            Notification::create([
+                'user_id' => $permission->user_id,
+                'permission_id' => $permission->id,
+                'message' => $message,
+            ]);
+        }
 
 
         return redirect()->route('permissions.index')->with('success', 'Permission updated successfully');
