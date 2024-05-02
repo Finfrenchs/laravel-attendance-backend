@@ -22,3 +22,13 @@ Route::apiResource('/api-attendances', AttendanceController::class)->middleware(
 Route::apiResource('/api-company', CompanyController::class)->middleware('auth:sanctum');
 Route::apiResource('/api-permissions', PermissionController::class)->middleware('auth:sanctum');
 Route::apiResource('/api-note', NoteController::class)->middleware('auth:sanctum');
+Route::post('/update-profile', [App\Http\Controllers\Api\AuthController::class, 'updateProfile'])->middleware('auth:sanctum');
+//checkin
+Route::post('/checkin', [App\Http\Controllers\Api\AttendanceController::class, 'checkin'])->middleware('auth:sanctum');
+
+//checkout
+Route::post('/checkout', [App\Http\Controllers\Api\AttendanceController::class, 'checkout'])->middleware('auth:sanctum');
+
+//is checkin
+Route::get('/is-checkin', [App\Http\Controllers\Api\AttendanceController::class, 'isCheckedin'])->middleware('auth:sanctum');
+

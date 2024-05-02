@@ -45,7 +45,6 @@ class PermissionController extends Controller
     {
 
         $request->validate([
-            'user_id' => 'required|integer',
             'date_permission' => 'required|string',
             'reason' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
@@ -53,7 +52,7 @@ class PermissionController extends Controller
 
         // Buat instance Permission baru
         $permission = new Permission();
-        $permission->user_id = $request->input('user_id');
+        $permission->user_id = $request->user()->id;
         $permission->date_permission = $request->input('date_permission');
         $permission->reason = $request->input('reason');
         // Set is_approval to 0 (false)
