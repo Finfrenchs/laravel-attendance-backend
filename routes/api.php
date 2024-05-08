@@ -35,3 +35,5 @@ Route::get('/is-checkin', [App\Http\Controllers\Api\AttendanceController::class,
 
 Route::apiResource('/notifications', NotificationController::class)->middleware('auth:sanctum');
 
+Route::post('/update-fcm', [App\Http\Controllers\Api\AuthController::class, 'updateFcmId'])->middleware('auth:sanctum');
+

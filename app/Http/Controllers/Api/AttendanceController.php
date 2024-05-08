@@ -13,9 +13,31 @@ class AttendanceController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // Ambil parameter 'date' dari request
+        $date = $request->query('date');
+
+        // Ambil user yang saat ini login
+        $currentUser = $request->user();
+
+        // Query data kehadiran yang difilter berdasarkan user yang login
+        $query = Attendance::where('user_id', $currentUser->id);
+
+        // Tambahkan filter berdasarkan tanggal jika parameter 'date' diberikan
+        if ($date) {
+            $query->where('date', $date);
+        }
+
+        // Ambil data kehadiran yang sudah difilter
+        $attendances = $query->get();
+
+        // Kembalikan data kehadiran dalam bentuk JSON
+        return response()->json([
+            'data' => $attendances,
+            'message' => 'Attendances fetched successfully',
+            'status' => 'Success',
+        ], 200);
     }
 
     /**
